@@ -9,10 +9,10 @@
 
 <body>
     <h1>Kvadrātvienādojuma risinātājs</h1>
-    <p> <input type="text" id="a" placeholder="a"> <input type="text" id="b" placeholder="b"> <input type="text"
-            placeholder="c" id="c"> </p>
+    <p> <input type="text" id="ax" placeholder="a"> <input type="text" id="bx" placeholder="b"> <input type="text"
+            placeholder="c" id="cx"> </p>
 
-    <button type="button" onclick="funkcija">Aprēķināt</button>
+    <button type="button" onclick="funkcija()">Aprēķināt</button>
     <span id="rezult"></span>
 
     <script>
@@ -31,12 +31,12 @@
         }
 
         function funkcija() {
-            var a = Number(a.value);
-            var b = Number(b.value);
-            var c = Number(c.value);
+            var a = Number(ax.value);
+            var b = Number(bx.value);
+            var c = Number(cx.value);
 
             if (isNan(a) || isNan(b) || isNan(c) || a === 0) {
-                rezult.innerHTML = "Lūdzu ievadiet skaitļus !"
+                rezult.innerHTML = "Lūdzu ievadiet skaitļus !";
                 return; //japartrauc šeit jo nav ievaditi skaitli
             }
             var atb = saknes(a, b, disk(a, b, c));
