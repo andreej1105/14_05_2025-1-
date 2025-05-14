@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Kvadrātvienādojuma risinātājs</h1>
-    <p> <input type="text" id="a" placeholder="a">   <input type="text" id="b" placeholder="b">   <input type="text" placeholder="c" id="c"> </p>
+    <p> <input type="text" id="a" placeholder="a"> <input type="text" id="b" placeholder="b"> <input type="text"
+            placeholder="c" id="c"> </p>
 
     <button type="button" onclick="funkcija">Aprēķināt</button>
+    <span id="rezult"></span>
 
     <script>
-        function funkcija(){
-            var ax=a.value;
-            var bx=b.value;
-            var cx=c.value;
+
+        function disk(a, b, c) {
+            return b * b - 4 * a * c;
+        }
+        function saknes(a, b, D) {
+            if (D < 0) {
+                return false;
+            } else {
+                var x1 = (-b + Math.sqrt(D)) / (2 * a);
+                var x2 = (-b - Math.sqrt(D)) / (2 * a);
+                return [x, x2];
+            }
+        }
+
+        function funkcija() {
+            var a = Number(a.value);
+            var b = Number(b.value);
+            var c = Number(c.value);
+
+            if (isNan(a) || isNan(b) || isNan(c) || a === 0) {
+                rezult.innerHTML = "Lūdzu ievadiet skaitļus !"
+                return; //japartrauc šeit jo nav ievaditi skaitli
+            }
+            var atb = saknes(a, b, disk(a, b, c));
+            if (atb === false) {
+                rezult.innerHTML = "Nav sakņu";
+            } else {
+                rezult.innerHTML = `Saknes:  x1 = ${atb[0].toFixed(3)}, x2 = ${atb[1].toFixed(3)}`
+            }
         }
     </script>
 </body>
+
 </html>
